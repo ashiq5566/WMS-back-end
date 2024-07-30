@@ -14,7 +14,7 @@ settings_local.py
 **/migrations/**
 
 # If you are using a virtual environment
-venv/
+venv/   
 env/
 
 # If you are using macOS
