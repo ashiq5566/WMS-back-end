@@ -14,18 +14,19 @@ class User(AbstractUser):
         
 class Stakeholder(WebBaseModel):
     STAKEHOLDER_TYPES = [
-        ('customer', 'Customer'),
-        ('supplier', 'Supplier'),
+        ('Customer', 'Customer'),
+        ('Supplier', 'Supplier'),
     ]
     stakeholder_id = models.CharField(max_length=100, null=True, blank=True, unique=True)
     stakeholder_name = models.CharField(max_length=100,null=True)
+    company_name = models.CharField(max_length=100,null=True)
     stakeholder_address = models.CharField(max_length=200,null=True)
     stakeholder_mobile = models.CharField(max_length=15,null=True)
     stakeholder_email = models.EmailField(null=True, blank=True)
     stakeholder_type = models.CharField(choices=STAKEHOLDER_TYPES, max_length=128, null=True, blank=True)
     
     def __str__(self):
-            return self.stakeholder_name
+            return f'{self.stakeholder_name}'
 
 
 # class Supplier(WebBaseModel):

@@ -6,9 +6,7 @@ from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate, login
 from django.conf import settings
 from importlib import import_module
-from .serializers import UserSerializer, StakeHolderSerializer
-
-from accounts.models import Stakeholder
+from .serializers import UserSerializer
 
 
 
@@ -42,31 +40,6 @@ class LoginView(APIView):
                    'message': 'Invalid credentials'
                 },
                 status=status.HTTP_401_UNAUTHORIZED
-            )
-            
-
-class StakeholderView(APIView):
-    permission_classes = [AllowAny]
-    def post(self, request):
-        name = request.data.get('name')
-        address = request.data.get('address')
-        phone = request.data.get('phone')
-        email = request.data.get('email')
-        type = request.data.get('type')
-        
-        stakeholder = Stakeholder.objects.create(
-            stakeholder_name=name,
-            stakeholder_address=address,
-            stakeholder_mobile=phone,
-            stakeholder_email=email,
-            stakeholder_type=type
-        )
-        return Response(
-            {
-                'message': 'Created successfully',
-                'data': StakeHolderSerializer(stakeholder).data
-            },
-            status=status.HTTP_200_OK
             )
     
     
